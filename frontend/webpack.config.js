@@ -5,42 +5,42 @@ const webpack = require("webpack");
 require("dotenv").config();
 
 module.exports = {
-  // 📍 Entry point for your app
+  //  Entry point for your app
   entry: "./src/index.jsx",
 
-  // 📤 Output settings (bundle file and public path)
+  //  Output settings (bundle file and public path)
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "bundle.js",
     publicPath: "/",
   },
 
-  // 🧠 Resolve file extensions automatically
+  //  Resolve file extensions automatically
   resolve: {
     extensions: [".js", ".jsx"],
   },
 
-  // 🛠️ Module rules: how different files should be handled
+  //  Module rules: how different files should be handled
   module: {
     rules: [
       {
-        // 🔄 Transpile JS/JSX files using Babel
+        //  Transpile JS/JSX files using Babel
         test: /\.jsx?$/,
         exclude: /node_modules/,
         use: "babel-loader",
       },
       {
-        // 🎨 Handle CSS files
+        //  Handle CSS files
         test: /\.css$/,
         use: ["style-loader", "css-loader"],
       },
       {
-        // 🖼️ Load image files (png, jpg, gif)
+        //  Load image files (png, jpg, gif)
         test: /\.(png|jpe?g|gif)$/i,
         type: "asset/resource",
       },
       {
-        // 🐙 Convert SVGs into React components using SVGR
+        //  Convert SVGs into React components using SVGR
         test: /\.svg$/,
         use: ["@svgr/webpack"],
       },
