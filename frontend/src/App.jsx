@@ -75,7 +75,8 @@ const App = () => {
 
   return (
     <div style={{ padding: "30px", fontFamily: "Arial" }}>
-        <h1 style={{ color: "blue", fontSize: "2rem", fontWeight: "bold", marginBottom: "20px"}}>🎵 Song Manager</h1>
+        <h1 style={{textAlign: "center", color: "blue", fontSize: "2rem", fontWeight: "bold", marginBottom: "20px"}}>🎵 Song Manager</h1>
+        <p style={{textAlign: "center", color: "gray", fontSize: "1rem", fontWeight: "bold", marginBottom: "50px"}}>Manage Your Music Library With Ease.</p>
       <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "20px" }}>
         <SearchBar onSearch={setSearch} />
         <AddSongButton onClick={() => setShowForm(true)} />

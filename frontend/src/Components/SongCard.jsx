@@ -1,5 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import styled from "@emotion/styled";
+import { FaMusic, FaUserAlt, FaCompactDisc, FaCalendarAlt } from "react-icons/fa";
 
 const Card = styled.div`
   padding: 16px;
@@ -11,19 +12,18 @@ const Card = styled.div`
   flex-direction: column;
   transition: all 0.3s ease;
   position: relative;
-  overflow: hidden; /* For the gradient accent */
+  overflow: hidden;
 
   &:hover {
-    background: #f8f9fa; /* Light gray background */
+    background: #f8f9fa;
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     
     &::before {
-      opacity: 1; /* Show gradient accent */
+      opacity: 1;
     }
   }
 
-  /* Gradient accent bar (hidden by default) */
   &::before {
     content: '';
     position: absolute;
@@ -37,24 +37,44 @@ const Card = styled.div`
   }
 `;
 
-const Title = styled.h3`
-  font-size: 18px;
-  margin: 0 0 4px 0;
-  position: relative; /* Ensure text stays above overlay */
+const HeaderRow = styled.div`
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
 `;
 
-const Text = styled.p`
+const MusicIcon = styled(FaMusic)`
+  color: #0066ff;
+  margin-right: 10px;
+  flex-shrink: 0;
+`;
+
+const Title = styled.h3`
+  font-size: 18px;
+  margin: 0;
+  color: #333;
+`;
+
+const MetaRow = styled.div`
+  display: flex;
+  align-items: center;
   margin: 4px 0;
   color: #666;
-  position: relative; /* Ensure text stays above overlay */
+  font-size: 14px;
+`;
+
+const MetaIcon = styled.span`
+  color: #999;
+  margin-right: 8px;
+  display: flex;
+  align-items: center;
 `;
 
 const Actions = styled.div`
   display: flex;
   justify-content: flex-end;
   gap: 8px;
-  margin-top: 12px;
-  position: relative; /* Ensure buttons stay above overlay */
+  margin-top: 16px;
 `;
 
 const Button = styled.button`
@@ -64,7 +84,9 @@ const Button = styled.button`
   border-radius: 4px;
   cursor: pointer;
   transition: all 0.2s ease;
-  position: relative; /* Ensure button content stays above overlay */
+  display: flex;
+  align-items: center;
+  gap: 4px;
 
   ${({ type }) =>
     type === "edit"
@@ -74,9 +96,8 @@ const Button = styled.button`
   &:hover {
     ${({ type }) =>
       type === "edit"
-        ? `background-color: #ffcc33;` /* Darker yellow */
-        : `background-color: #ff5252;` /* Darker red */
-    }
+        ? `background-color: #ffcc33;`
+        : `background-color: #ff5252;`}
     transform: scale(1.05);
   }
 
@@ -89,11 +110,27 @@ const SongCard = ({ song, onEdit, onDelete }) => {
   return (
     <Card>
       <div>
-        <Title>{song.title}</Title>
-        <Text>Artist: {song.artist}</Text>
-        <Text>Album: {song.album}</Text>
-        <Text>Year: {song.year}</Text>
+        <HeaderRow>
+          <MusicIcon size={18} />
+          <Title>{song.title}</Title>
+        </HeaderRow>
+
+        <MetaRow>
+          <MetaIcon><FaUserAlt size={12} /></MetaIcon>
+          {song.artist}
+        </MetaRow>
+
+        <MetaRow>
+          <MetaIcon><FaCompactDisc size={12} /></MetaIcon>
+          {song.album}
+        </MetaRow>
+
+        <MetaRow>
+          <MetaIcon><FaCalendarAlt size={12} /></MetaIcon>
+          {song.year}
+        </MetaRow>
       </div>
+
       <Actions>
         <Button type="edit" onClick={() => onEdit(song)}>
           Edit
